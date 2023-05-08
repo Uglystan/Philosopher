@@ -6,7 +6,7 @@
 /*   By: lgirault <lgirault@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/08 18:18:07 by lgirault          #+#    #+#             */
-/*   Updated: 2023/05/08 20:28:49 by lgirault         ###   ########.fr       */
+/*   Updated: 2023/05/08 20:52:31 by lgirault         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,14 +47,16 @@ void	*routine(void *argument)
 	t_each_philo	*each_philo;
 
 	each_philo = (t_each_philo *) argument;
-	while (1)
+	while (1)//tant qu'on a pas pthread_join(le thread qui supervise la mort)
 	{
 		if (each_philo->num_philo % 2 == 0)
 			usleep(each_philo->time_to_eat / 2);//Forcement il y'en a qui devront attendre
 		eat_routine(each_philo);
 		sleep_routine(each_philo);
 		think_routine(each_philo);
-		//UNLOCK et debut de decompte avant mort (start_time)
+		//UNLOCK et debut de decompte avant mort (start_time)// POur compter mort un thread en plus par philo on lance le debut du decompte qu'on ennvoie au thread dans le thread boucle inf ade gettime et si un moment le resutat de gettime mois debut et > au time to dead on stop et return
+		//Compteur qui se lance des le debut et remis a 0 chaque debut de repas
+		//si compteur > que sleep + eat - sleep alors mort
 		//dormir
 	}
 	return (NULL);
