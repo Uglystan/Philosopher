@@ -6,7 +6,7 @@
 #    By: lgirault <lgirault@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/05/07 18:33:34 by lgirault          #+#    #+#              #
-#    Updated: 2023/05/07 18:37:14 by lgirault         ###   ########.fr        #
+#    Updated: 2023/05/08 20:14:03 by lgirault         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -24,6 +24,8 @@ RESET=\033[0m
 SRC = src/check_arg.c \
 	src/Philosopher.c \
 	src/utils.c \
+	src/init.c \
+	src/routine.c \
 
 OBJ = $(SRC:.c=.o)
 
