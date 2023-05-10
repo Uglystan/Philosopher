@@ -6,7 +6,7 @@
 /*   By: lgirault <lgirault@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/04 16:38:42 by lgirault          #+#    #+#             */
-/*   Updated: 2023/05/08 20:28:59 by lgirault         ###   ########.fr       */
+/*   Updated: 2023/05/10 21:50:56 by lgirault         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,8 @@ typedef struct s_each_philo
 	int				time_to_sleep;
 	int				nbr_of_lunch;
 	int				dead;
-	struct timeval			time_start;
+	long int			start_eat;
+	long int			time_start;
 	pthread_mutex_t			*fork_right;
 	pthread_mutex_t			*fork_left;
 	pthread_mutex_t			print_mutex;
@@ -54,6 +55,7 @@ int	ft_atoi(char *str);
 int	check_arg(int argc, char **argv);
 int	init(t_philo *philo, char **argv);
 void	*routine(void *argument);
-long int	time_passed(struct timeval time_start);
+long int	time_passed(struct timeval *time_start);
+long int	time_now();
 
 #endif

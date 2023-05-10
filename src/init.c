@@ -6,7 +6,7 @@
 /*   By: lgirault <lgirault@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/08 18:10:42 by lgirault          #+#    #+#             */
-/*   Updated: 2023/05/08 19:23:07 by lgirault         ###   ########.fr       */
+/*   Updated: 2023/05/10 21:51:13 by lgirault         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,7 @@ static int	init_each_philo(t_philo *philo)
 		philo->tab_each_philo[i - 1].time_to_eat = philo->time_to_eat;
 		philo->tab_each_philo[i - 1].time_to_sleep = philo->time_to_sleep;
 		philo->tab_each_philo[i - 1].nbr_of_lunch = philo->nbr_of_lunch;
-		philo->tab_each_philo[i - 1].time_start = philo->time_start;
+		philo->tab_each_philo[i - 1].time_start = time_now();
 		philo->tab_each_philo[i - 1].print_mutex = philo->print_mutex;
 		philo->tab_each_philo[i - 1].dead = 0;
 		philo->tab_each_philo[i - 1].fork_left = &philo->fork_tab[i - 1];
@@ -79,13 +79,13 @@ static int	init_print_mutex(t_philo *philo)
 
 int	init(t_philo *philo, char **argv)
 {
-	gettimeofday(&philo->time_start, NULL);//Ici on gere le temps dans la struct time_start on le temps du debut du programme on utilise la fonction time_passed dans utils pour avoir le temps passe depuis
 	philo->nbr_philo = ft_atoi(argv[1]);
 	philo->time_to_die = ft_atoi(argv[2]);
 	philo->time_to_eat = ft_atoi(argv[3]);
 	philo->time_to_sleep = ft_atoi(argv[4]);
 	if (argv[5] != NULL)
 		philo->nbr_of_lunch = ft_atoi(argv[5]);
+	gettimeofday(&philo->time_start, NULL);//Ici on gere le temps dans la struct time_start on le temps du debut du programme on utilise la fonction time_passed dans utils pour avoir le temps passe depuis
 	if (init_fork_tab(philo) != 0 || init_each_philo(philo) != 0 || init_thread(philo) != 0 || init_print_mutex(philo) != 0)
 		return (1);
 	return(0);
