@@ -6,13 +6,13 @@
 #    By: lgirault <lgirault@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/05/07 18:33:34 by lgirault          #+#    #+#              #
-#    Updated: 2023/05/10 21:46:21 by lgirault         ###   ########.fr        #
+#    Updated: 2023/05/11 09:00:41 by lgirault         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = Philosopher
 CC = cc
-CFLAGS = -Wall -Werror -Wextra
+CFLAGS = -Wall -Werror -Wextra -pthread -g
 RM = rm -rf
 
 GREEN=\033[33;32m

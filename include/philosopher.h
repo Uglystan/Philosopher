@@ -6,7 +6,7 @@
 /*   By: lgirault <lgirault@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/04 16:38:42 by lgirault          #+#    #+#             */
-/*   Updated: 2023/05/10 21:50:56 by lgirault         ###   ########.fr       */
+/*   Updated: 2023/05/11 15:06:07 by lgirault         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,9 @@ typedef struct s_each_philo
 	pthread_mutex_t			*fork_right;
 	pthread_mutex_t			*fork_left;
 	pthread_mutex_t			print_mutex;
+	pthread_mutex_t			eat_mutex;
+	pthread_mutex_t			dead_mutex;
+	struct s_philo			*philo;
 }t_each_philo;
 
 typedef struct s_philo
@@ -44,9 +47,12 @@ typedef struct s_philo
 	int				time_to_eat;
 	int				time_to_sleep;
 	int				nbr_of_lunch;
+	int				dead;
 	struct timeval			time_start;
 	pthread_mutex_t			*fork_tab;
 	pthread_mutex_t			print_mutex;
+	pthread_mutex_t			eat_mutex;
+	pthread_mutex_t			dead_mutex;
 	pthread_t			*thread_philo;
 	t_each_philo			*tab_each_philo;
 }t_philo;
@@ -57,5 +63,6 @@ int	init(t_philo *philo, char **argv);
 void	*routine(void *argument);
 long int	time_passed(struct timeval *time_start);
 long int	time_now();
-
+void		ft_usleep(long int usec);
+void	ft_print(t_each_philo *each_philo, int bool);
 #endif

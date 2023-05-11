@@ -6,7 +6,7 @@
 /*   By: lgirault <lgirault@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/04 16:38:02 by lgirault          #+#    #+#             */
-/*   Updated: 2023/05/08 18:26:20 by lgirault         ###   ########.fr       */
+/*   Updated: 2023/05/11 15:56:04 by lgirault         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ int	main(int argc, char **argv)
 		pthread_join(philo.thread_philo[i - 1], NULL);
 		i++;
 	}
-	printf("FIN\n");
+	//printf("FIN\n");
 	// creat_thread(&philo);
 	// while ()
 }
