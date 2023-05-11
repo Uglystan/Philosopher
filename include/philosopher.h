@@ -6,7 +6,7 @@
 /*   By: lgirault <lgirault@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/04 16:38:42 by lgirault          #+#    #+#             */
-/*   Updated: 2023/05/11 15:06:07 by lgirault         ###   ########.fr       */
+/*   Updated: 2023/05/11 17:25:24 by lgirault         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,9 +34,6 @@ typedef struct s_each_philo
 	long int			time_start;
 	pthread_mutex_t			*fork_right;
 	pthread_mutex_t			*fork_left;
-	pthread_mutex_t			print_mutex;
-	pthread_mutex_t			eat_mutex;
-	pthread_mutex_t			dead_mutex;
 	struct s_philo			*philo;
 }t_each_philo;
 

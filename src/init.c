@@ -6,7 +6,7 @@
 /*   By: lgirault <lgirault@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/08 18:10:42 by lgirault          #+#    #+#             */
-/*   Updated: 2023/05/11 14:50:28 by lgirault         ###   ########.fr       */
+/*   Updated: 2023/05/11 17:25:27 by lgirault         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,9 +43,6 @@ static int	init_each_philo(t_philo *philo)
 		philo->tab_each_philo[i - 1].nbr_of_lunch = philo->nbr_of_lunch;
 		philo->tab_each_philo[i - 1].time_start = time_now();
 		philo->tab_each_philo[i - 1].dead = 0;
-		philo->tab_each_philo[i - 1].print_mutex = philo->print_mutex;
-		philo->tab_each_philo[i - 1].eat_mutex = philo->eat_mutex;
-		philo->tab_each_philo[i - 1].eat_mutex = philo->dead_mutex;
 		philo->tab_each_philo[i - 1].start_eat = time_now();
 		philo->tab_each_philo[i - 1].fork_left = &philo->fork_tab[i - 1];
 		if (i == philo->nbr_philo)
