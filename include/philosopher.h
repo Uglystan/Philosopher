@@ -6,7 +6,7 @@
 /*   By: lgirault <lgirault@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/04 16:38:42 by lgirault          #+#    #+#             */
-/*   Updated: 2023/05/11 17:25:24 by lgirault         ###   ########.fr       */
+/*   Updated: 2023/05/12 12:17:24 by lgirault         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,7 @@ typedef struct s_each_philo
 	long int			time_start;
 	pthread_mutex_t			*fork_right;
 	pthread_mutex_t			*fork_left;
+	pthread_t			death;
 	struct s_philo			*philo;
 }t_each_philo;
 
@@ -49,7 +50,7 @@ typedef struct s_philo
 	pthread_mutex_t			*fork_tab;
 	pthread_mutex_t			print_mutex;
 	pthread_mutex_t			eat_mutex;
-	pthread_mutex_t			dead_mutex;
+	pthread_mutex_t			test;
 	pthread_t			*thread_philo;
 	t_each_philo			*tab_each_philo;
 }t_philo;
@@ -62,4 +63,5 @@ long int	time_passed(struct timeval *time_start);
 long int	time_now();
 void		ft_usleep(long int usec);
 void	ft_print(t_each_philo *each_philo, int bool);
+int	test(t_each_philo *each_philo, int bool);
 #endif

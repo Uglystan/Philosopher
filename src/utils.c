@@ -6,7 +6,7 @@
 /*   By: lgirault <lgirault@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/04 16:43:14 by lgirault          #+#    #+#             */
-/*   Updated: 2023/05/11 16:26:47 by lgirault         ###   ########.fr       */
+/*   Updated: 2023/05/11 19:10:11 by lgirault         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,7 +62,7 @@ void	ft_usleep(long int usec)
 
 void	ft_print(t_each_philo *each_philo, int bool)
 {
-	if (each_philo->philo->dead == 0)
+	if (test(each_philo, 0) == 0)
 	{
 		if (bool == 1)
 			printf("\033[34;01m%ld %d has taken a fork\033[00m\n", time_now() - each_philo->time_start, each_philo->num_philo);

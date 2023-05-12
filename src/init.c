@@ -6,7 +6,7 @@
 /*   By: lgirault <lgirault@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/08 18:10:42 by lgirault          #+#    #+#             */
-/*   Updated: 2023/05/11 17:25:27 by lgirault         ###   ########.fr       */
+/*   Updated: 2023/05/12 12:17:21 by lgirault         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,7 +75,7 @@ static int	init_thread(t_philo *philo)
 
 static int	init_print_mutex(t_philo *philo)
 {
-	pthread_mutex_init(&philo->dead_mutex, NULL);
+	pthread_mutex_init(&philo->test, NULL);
 	pthread_mutex_init(&philo->eat_mutex, NULL);
 	pthread_mutex_init(&philo->print_mutex, NULL);//protect
 	return (0);
