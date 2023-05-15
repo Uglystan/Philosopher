@@ -6,7 +6,7 @@
 /*   By: lgirault <lgirault@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/08 18:18:07 by lgirault          #+#    #+#             */
-/*   Updated: 2023/05/12 12:21:55 by lgirault         ###   ########.fr       */
+/*   Updated: 2023/05/12 17:23:15 by lgirault         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,17 +27,18 @@ static void	take_fork(t_each_philo *each_philo)
 	pthread_mutex_lock(&each_philo->philo->print_mutex);
 	ft_print(each_philo, 1);
 	ft_print(each_philo, 1);
+	ft_print(each_philo, 2);
 	pthread_mutex_unlock(&each_philo->philo->print_mutex);
+	if (test(each_philo, 0) == 0)
+	{
+		pthread_mutex_unlock(each_philo->fork_left);
+		pthread_mutex_unlock(each_philo->fork_right);
+	}
+	
 }
 
 static void	eat_routine(t_each_philo *each_philo)
 {
-	pthread_mutex_lock(&each_philo->philo->print_mutex);
-	ft_print(each_philo, 2);
-	pthread_mutex_unlock(&each_philo->philo->print_mutex);
-	pthread_mutex_lock(&each_philo->philo->eat_mutex);
-	each_philo->start_eat = time_now();
-	pthread_mutex_unlock(&each_philo->philo->eat_mutex);
 	pthread_mutex_lock(&each_philo->philo->eat_mutex);
 	each_philo->start_eat = time_now();
 	pthread_mutex_unlock(&each_philo->philo->eat_mutex);
@@ -88,33 +89,15 @@ void	*check_death(void *argument)
 int	test(t_each_philo *each_philo, int bool)
 {
 	pthread_mutex_lock(&each_philo->philo->test);
-    if (bool != 0)
-        each_philo->philo->dead = bool;
-    if (each_philo->philo->dead != 0)
-    {
-        pthread_mutex_unlock(&each_philo->philo->test);
-        return (1);
-    }
-    pthread_mutex_unlock(&each_philo->philo->test);
-    return (0);
-	// if (bool == 1)
-	// {
-	// 	pthread_mutex_lock(&each_philo->philo->test);
-	// 	if (each_philo->philo->dead == 0)
-	// 	{
-	// 		pthread_mutex_unlock(&each_philo->philo->test);
-	// 		return (0);
-	// 	}
-	// 	pthread_mutex_unlock(&each_philo->philo->test);
-	// 	return (1);
-	// }
-	// else
-	// {
-	// 	pthread_mutex_lock(&each_philo->philo->test);
-	// 	each_philo->philo->dead = 1;
-	// 	pthread_mutex_unlock(&each_philo->philo->test);
-	// 	return (0);
-	// }
+	if (bool != 0)
+		each_philo->philo->dead = bool;
+	if (each_philo->philo->dead != 0)
+	{
+		pthread_mutex_unlock(&each_philo->philo->test);
+			return (1);
+	}
+	pthread_mutex_unlock(&each_philo->philo->test);
+	return (0);
 }
 
 void	*routine(void *argument)
@@ -122,7 +105,7 @@ void	*routine(void *argument)
 	t_each_philo	*each_philo;
 
 	each_philo = (t_each_philo *) argument;
-	if (each_philo->num_philo % 2 != 0)
+	if (each_philo->num_philo % 2 == 0)
 		ft_usleep(each_philo->time_to_eat / 10);//Forcement il y'en a qui devront attendre
 	each_philo->start_eat = time_now();
 	while (test(each_philo, 0) == 0)//tant qu'on a pas pthread_join(le thread qui supervise la mort)
@@ -142,7 +125,7 @@ void	*routine(void *argument)
 		think_routine(each_philo);
 		if (test(each_philo, 0) != 0)
 			return (NULL);
-		pthread_join(each_philo->death, NULL);
+		//pthread_join(each_philo->death, NULL);
 		pthread_detach(each_philo->death);
 	}
 	return (NULL);
