@@ -6,7 +6,7 @@
 /*   By: lgirault <lgirault@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/04 16:43:14 by lgirault          #+#    #+#             */
-/*   Updated: 2023/05/11 19:10:11 by lgirault         ###   ########.fr       */
+/*   Updated: 2023/05/23 13:11:32 by lgirault         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,6 +56,7 @@ void	ft_usleep(long int usec)
 	long	time_action_start;
 
 	time_action_start = time_now();
+	usleep(usec * 800);
 	while (time_now() - time_action_start < usec)
 		usleep(usec / 10);
 }

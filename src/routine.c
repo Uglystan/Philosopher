@@ -6,7 +6,7 @@
 /*   By: lgirault <lgirault@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/08 18:18:07 by lgirault          #+#    #+#             */
-/*   Updated: 2023/05/12 17:23:15 by lgirault         ###   ########.fr       */
+/*   Updated: 2023/05/23 10:59:26 by lgirault         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ static void	take_fork(t_each_philo *each_philo)
 	ft_print(each_philo, 1);
 	ft_print(each_philo, 2);
 	pthread_mutex_unlock(&each_philo->philo->print_mutex);
-	if (test(each_philo, 0) == 0)
+	if (test(each_philo, 0) != 0)
 	{
 		pthread_mutex_unlock(each_philo->fork_left);
 		pthread_mutex_unlock(each_philo->fork_right);
@@ -106,7 +106,7 @@ void	*routine(void *argument)
 
 	each_philo = (t_each_philo *) argument;
 	if (each_philo->num_philo % 2 == 0)
-		ft_usleep(each_philo->time_to_eat / 10);//Forcement il y'en a qui devront attendre
+		ft_usleep(each_philo->time_to_eat / 2);//Forcement il y'en a qui devront attendre
 	each_philo->start_eat = time_now();
 	while (test(each_philo, 0) == 0)//tant qu'on a pas pthread_join(le thread qui supervise la mort)
 	{
