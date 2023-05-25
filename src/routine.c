@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   routine.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lgirault <lgirault@student.42.fr>          +#+  +:+       +#+        */
+/*   By: lucasgirault <lucasgirault@student.42.f    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/08 18:18:07 by lgirault          #+#    #+#             */
-/*   Updated: 2023/05/23 10:59:26 by lgirault         ###   ########.fr       */
+/*   Updated: 2023/05/25 22:11:43 by lucasgiraul      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,7 +63,7 @@ static void	think_routine(t_each_philo *each_philo)
 	pthread_mutex_unlock(&each_philo->philo->print_mutex);
 }	
 
-void	*check_death(void *argument)
+/*void	*check_death(void *argument)
 {
 	t_each_philo	*each_philo;
 
@@ -84,7 +84,7 @@ void	*check_death(void *argument)
 	}
 	pthread_mutex_unlock(&each_philo->philo->eat_mutex);
 	return (NULL);
-}
+}*/
 
 int	test(t_each_philo *each_philo, int bool)
 {
@@ -110,7 +110,7 @@ void	*routine(void *argument)
 	each_philo->start_eat = time_now();
 	while (test(each_philo, 0) == 0)//tant qu'on a pas pthread_join(le thread qui supervise la mort)
 	{
-		pthread_create(&each_philo->death, NULL, check_death, each_philo);
+		//pthread_create(&each_philo->death, NULL, check_death, each_philo);
 		if (test(each_philo, 0) != 0)
 			return (NULL);
 		take_fork(each_philo);
@@ -126,7 +126,7 @@ void	*routine(void *argument)
 		if (test(each_philo, 0) != 0)
 			return (NULL);
 		//pthread_join(each_philo->death, NULL);
-		pthread_detach(each_philo->death);
+		//pthread_detach(each_philo->death);
 	}
 	return (NULL);
 }

@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: lgirault <lgirault@student.42.fr>          +#+  +:+       +#+         #
+#    By: lucasgirault <lucasgirault@student.42.f    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/05/07 18:33:34 by lgirault          #+#    #+#              #
-#    Updated: 2023/05/11 09:00:41 by lgirault         ###   ########.fr        #
+#    Updated: 2023/05/25 22:59:52 by lucasgiraul      ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
