@@ -3,16 +3,16 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: lucasgirault <lucasgirault@student.42.f    +#+  +:+       +#+         #
+#    By: lgirault <lgirault@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/05/07 18:33:34 by lgirault          #+#    #+#              #
-#    Updated: 2023/05/25 22:59:52 by lucasgiraul      ###   ########.fr        #
+#    Updated: 2023/05/29 17:40:16 by lgirault         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-NAME = Philosopher
+NAME = philo
 CC = cc
-CFLAGS = -Wall -Werror -Wextra -pthread -g
+CFLAGS = -Wall -Werror -Wextra -pthread -g3
 RM = rm -rf
 
 GREEN=\033[33;32m
@@ -26,6 +26,8 @@ SRC = src/check_arg.c \
 	src/utils.c \
 	src/init.c \
 	src/routine.c \
+	src/routine_suite.c \
+	src/free.c \
 
 OBJ = $(SRC:.c=.o)
 

@@ -3,40 +3,52 @@
 /*                                                        :::      ::::::::   */
 /*   Philosopher.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lucasgirault <lucasgirault@student.42.f    +#+  +:+       +#+        */
+/*   By: lgirault <lgirault@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/04 16:38:02 by lgirault          #+#    #+#             */
-/*   Updated: 2023/05/25 22:58:52 by lucasgiraul      ###   ########.fr       */
+/*   Updated: 2023/05/29 17:13:06 by lgirault         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/philosopher.h"
 
-/*POur verifier mort d'un philo mutex pour chaque philo autre aue les fourchette si un philo meurt il le lock.
-En paralelle un thread autre que les philos lock et delock tout les mutex de mort et si a moment il arrive pas a en lock un c'est que un philo est mort*/
+int	check_all_eat(t_philo *philo)
+{
+	int	i;
+
+	i = 0;
+	pthread_mutex_lock(&philo->lunch_mutex);
+	while (i != philo->nbr_philo && philo->tab_each_philo[i].stop_eat != 0)
+	{
+		i++;
+	}
+	pthread_mutex_unlock(&philo->lunch_mutex);
+	if (i == philo->nbr_philo)
+		return (1);
+	return (0);
+}
 
 int	check_death(t_philo *philo)
 {
 	int	i;
 
 	i = 0;
-	ft_usleep((philo->time_to_die + 2));
 	while (1)
 	{
+		ft_usleep((philo->time_to_die + 1));
 		if (i + 1 == philo->nbr_philo)
 			i = 0;
-		pthread_mutex_lock(&philo->eat_mutex);
-		if (philo->dead != 0)
-		{
-			pthread_mutex_unlock(&philo->eat_mutex);
+		if (check_all_eat(philo) == 1)
 			return (1);
-		}
-		if (time_now() - philo->tab_each_philo->start_eat >= philo->tab_each_philo->time_to_die)
+		pthread_mutex_lock(&philo->eat_mutex);
+		if (time_now() - philo->tab_each_philo->start_eat
+			>= philo->tab_each_philo->time_to_die)
 		{
 			pthread_mutex_lock(&philo->print_mutex);
 			ft_print(&philo->tab_each_philo[i], 5);
 			pthread_mutex_unlock(&philo->print_mutex);
-			test(&philo->tab_each_philo[i], 1);
+			is_dead(&philo->tab_each_philo[i], 1);
+			pthread_mutex_unlock(&philo->eat_mutex);
 			return (1);
 		}
 		pthread_mutex_unlock(&philo->eat_mutex);
@@ -48,19 +60,18 @@ int	check_death(t_philo *philo)
 int	main(int argc, char **argv)
 {
 	t_philo	philo;
-	int	i;
-	
+	int		i;
+
 	i = 1;
 	if (check_arg(argc, argv) == 1)
 		return (ERR);
-	init(&philo, argv);
+	if (init(&philo, argv) == 1)
+		return (1);
 	check_death(&philo);
 	while (i <= philo.nbr_philo)
 	{
 		pthread_join(philo.thread_philo[i - 1], NULL);
 		i++;
 	}
-	//printf("FIN\n");
-	// creat_thread(&philo);
-	// while ()
+	free_end(philo);
 }
