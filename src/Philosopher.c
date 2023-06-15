@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   Philosopher.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lucasgirault <lucasgirault@student.42.f    +#+  +:+       +#+        */
+/*   By: lgirault <lgirault@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/04 16:38:02 by lgirault          #+#    #+#             */
-/*   Updated: 2023/05/29 23:03:27 by lucasgiraul      ###   ########.fr       */
+/*   Updated: 2023/05/29 17:13:06 by lgirault         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,9 +33,9 @@ int	check_death(t_philo *philo)
 	int	i;
 
 	i = 0;
-	ft_usleep((philo->time_to_die + 1));
 	while (1)
 	{
+		ft_usleep((philo->time_to_die + 1));
 		if (i + 1 == philo->nbr_philo)
 			i = 0;
 		if (check_all_eat(philo) == 1)

@@ -6,13 +6,13 @@
 #    By: lgirault <lgirault@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/05/07 18:33:34 by lgirault          #+#    #+#              #
-#    Updated: 2023/05/29 17:40:16 by lgirault         ###   ########.fr        #
+#    Updated: 2023/05/29 18:04:26 by lgirault         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = philo
 CC = cc
-CFLAGS = -Wall -Werror -Wextra -pthread -g3
+CFLAGS = -Wall -Werror -Wextra -fsanitize=thread
 RM = rm -rf
 
 GREEN=\033[33;32m
